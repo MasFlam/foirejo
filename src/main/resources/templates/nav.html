@@ -1,0 +1,7 @@
+<ul id="nav" class="nav">
+	<li><a href="/">Home</a></li>
+	<li><a href="/offers">Offers</a></li>
+	{#if user} <li><a href="/trades">Trades</a></li> {/if}
+	<li><a href="/about">About</a></li>
+	{#if user} <li>Logged in as <b>{user.getUsername()}</b></li> {/if}
+</ul>

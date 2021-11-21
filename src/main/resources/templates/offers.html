@@ -1,0 +1,66 @@
+{#include base title='Offers'}
+
+{#body}
+<div class="content">
+	<h2 class="sect-header" style="margin-bottom: 0;">Offers</h2>
+	<div id="offer-search">
+		<select id="sort-select" form="sort-filter">
+			<option>Cheapest first</option>
+			<option>Newest first</option>
+			<option></option>
+		</select>
+	</div>
+	{#include result_pages /}
+	<div id="offers-list">
+		{#for offer in offers}
+			<div>
+				<a class="offer-thumb" href="/offers/{offer.getId()}">
+					<span>{offerPrices.get(index)}</span>
+					<img src="https://masflam.com/static/ihatethecsharp.gif">
+					<span>{offer.getTitle()}</span>
+					<p>Very good foo bar high quality bar of foo. I like the foo, and so should you. Moo moo.</p>
+				</a>
+			</div>
+		{/for}
+		<div><a class="offer-thumb" href="#">
+			<span>100mɱ</span>
+			<img src="https://masflam.com/static/headthink.png">
+			<span>Foo bar</span>
+			<p>Very good foo bar high quality bar of foo.</p>
+		</a></div>
+		<div><a class="offer-thumb" href="#">
+			<span>100mɱ</span>
+			<img src="https://masflam.com/static/headthink.png">
+			<span>Foo bar good</span>
+			<p>Very good foo bar high quality bar of foo. I like the foo, and so should you. Moo moo.</p>
+		</a></div>
+		<div><a class="offer-thumb" href="#">
+			<span>100mɱ</span>
+			<img src="https://masflam.com/static/rend3d-demo-1.gif">
+			<span>Foo bar</span>
+			<p>Very good foo bar high quality bar of foo.</p>
+		</a></div>
+		<div><a class="offer-thumb" href="#">
+			<span>100mɱ</span>
+			<img src="https://masflam.com/static/headthink.png">
+			<span>Foo bar</span>
+			<p>Very good foo bar high quality bar of foo.</p>
+		</a></div>
+		<div><a class="offer-thumb" href="#">
+			<span>100mɱ</span>
+			<img src="https://masflam.com/static/headthink.png">
+			<span>Foo bar</span>
+			<p>Very good foo bar high quality bar of foo.</p>
+		</a></div>
+		<div><a class="offer-thumb" href="#">
+			<span>100mɱ</span>
+			<img src="https://masflam.com/static/headthink.png">
+			<span>Foo bar</span>
+			<p>Very good foo bar high quality bar of foo.</p>
+		</a></div>
+	</div>
+	{#include result_pages /}
+</div>
+{/body}
+
+{/include}

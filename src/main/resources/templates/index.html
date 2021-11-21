@@ -1,0 +1,51 @@
+{#include base title='Home'}
+
+{#body}
+
+<div class="two-columns">
+<div>
+	<h3 class="sect-header">News</h3>
+	<section class="news-item">
+		<h3>Foo bar</h3>
+		<span class="news-timestamp">2021-11-21 00:02:42</span>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis egestas sem, eu tincidunt sapien elementum at. Pellentesque ante augue, placerat non justo posuere, laoreet consectetur lectus. Aliquam elementum orci nec nunc vulputate dignissim a id nisl. Pellentesque euismod blandit ante, lobortis consectetur lectus dapibus et. Curabitur ex dolor, tempor vitae mi vel, tincidunt feugiat quam. Sed elementum blandit vehicula. Suspendisse potenti. Proin nec diam odio. Integer pellentesque magna in sapien scelerisque, ac finibus ipsum elementum.</p>
+	</section>
+	<section class="news-item">
+		<h3>Hello World!</h3>
+		<span class="news-timestamp">2021-11-21 00:01:03</span>
+		<p>Proin vitae imperdiet nulla. Quisque sed odio ac lorem egestas laoreet. Vestibulum at nisl eu elit auctor gravida. Curabitur iaculis mattis nibh eu pretium. Nunc non mollis quam, vel mollis mauris. Donec accumsan suscipit vestibulum. Nullam lobortis risus non velit consectetur suscipit. Curabitur interdum est ipsum. Vestibulum sit amet diam cursus, volutpat ligula ac, porta dolor. Vestibulum interdum, enim non accumsan hendrerit, ipsum arcu vulputate sem, at maximus nisi urna egestas felis. Vivamus semper congue aliquet.</p>
+	</section>
+</div>
+{#if user}
+<div>
+	<h3 class="sect-header">Create an Offer</h3>
+	<form class="form" action="/create_offer" method="post">
+		<input name="title" placeholder="Title" type="text">
+		<textarea name="description" placeholder="Description"></textarea>
+		<input name="price" placeholder="Price" type="number">
+		<input type="submit" value="Post">
+	</form>
+</div>
+{#else}
+<div>
+	<h3 class="sect-header">Log in</h3>
+	<form class="form" action="/login" method="post">
+		<input name="username" placeholder="Username" type="text">
+		<input name="password" placeholder="Password" type="password">
+		<input type="submit" value="Log in">
+	</form>
+	<h3 class="sect-header">Sign up</h3>
+	<form class="form" action="/signup" method="post">
+		<input name="username" placeholder="Username" type="text">
+		<input name="email" placeholder="Email" type="email">
+		<input name="password" placeholder="Password" type="password">
+		<input name="repeat_password" placeholder="Repeat password" type="password">
+		<input type="submit" value="Sign up">
+	</form>
+</div>
+{/if}
+</div>
+
+{/body}
+
+{/include}

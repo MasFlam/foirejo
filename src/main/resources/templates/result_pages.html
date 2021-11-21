@@ -1,0 +1,11 @@
+<div class="result-pages">
+	{#if prevPageNum}<div class="left-right"><a href="?pageno={prevPageNum}">&lt;</a></div>{/if}
+	{#for pageNum in pageNums}
+		{#if pageNum == 0}
+			<div class="page-divider">&hellip;</div>
+		{#else}
+			<div {#if pageNum == currentPageNum} class="current" {/if}><a href="?pageno={pageNum}">{pageNum}</a></div>
+		{/if}
+	{/for}
+	{#if nextPageNum}<div class="left-right"><a href="?pageno={nextPageNum}">&gt;</a></div>{/if}
+</div>
