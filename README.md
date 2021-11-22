@@ -1,3 +1,21 @@
+
+# Foirejo
+Foirejo (Esperanto for *marketplace*) is an online marketplace where all payments are made in
+Monero. You can buy and sell **anything** – physical goods, virtual products, and even services,
+as long as it's legal. Think craigslist, but global and only using Monero.
+
+# Contributing
+The project is written in Java and uses Quarkus for the backend with Qute
+for templating HTML and CSS. Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+
+# License and Donations
+Foirejo is shared under the terms of the GNU Affero General Public License version 3. This means
+a CCS proposal is out of reach, since all source code for one must be under a permissive license.
+Therefore, if you want to support the development of Foirejo, feel free to tip some XMR directly:
+
+MasFlam – `89D4wqCMjwvhxGWyux9PhkdMBuYBuRQSH2pc7LthSQ2ZJcuEzHfXd37KzsMamppcV3WPFbMsBLVziHWHHnzMubiWHEGJD8u`
+
+<!--
 # foirejo Project
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
@@ -50,3 +68,4 @@ If you want to learn more about building native executables, please consult http
 ## Related Guides
 
 - RESTEasy JAX-RS ([guide](https://quarkus.io/guides/rest-json)): REST endpoint framework implementing JAX-RS and more
+-->
