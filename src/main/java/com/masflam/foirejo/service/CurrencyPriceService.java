@@ -70,4 +70,16 @@ public class CurrencyPriceService {
 			return -1;
 		}
 	}
+	
+	public long asPiconero(long amount, Currency currency) {
+		double moneroBtc = getPriceInBtc(Currency.XMR);
+		double otherBtc = getPriceInBtc(currency);
+		return Math.round(
+			amount /
+			(double) currency.getDenom() *
+			otherBtc /
+			moneroBtc *
+			Currency.XMR.getDenom()
+		);
+	}
 }

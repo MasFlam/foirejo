@@ -1,7 +1,41 @@
-{#include base title='Offer'}
+{#include base title=offer.getTitle()}
 
 {#body}
-<h3>Offer</h3>
+<div>
+	<h2 class="sect-header">{offer.getTitle()}</h2>
+	<div class="two-columns">
+		<div style="border: 1px solid gray;">
+			<img src="https://masflam.com/static/headthink.png" class="offer-image">
+		</div>
+		<div style="padding-left: 10px;">
+			<h1 class="sect-header" style="margin: 0 5px;">{humanPrice}</h1>
+			<div class="price-columns">
+				<div>0.42069 ₿</div>
+				<div>127.42 $</div>
+				<div>69.42 €</div>
+			</div>
+			<div style="padding: 10px;">
+				<div>
+					Trade owner:
+					<a href="/users/{offer.getOwner().getId()}" class="offer-owner">{offer.getOwner().getUsername()}</a>
+					<span class="owner-rating">100% (7 trades)</span>
+				</div>
+				<div class="offer-short-desc">
+					Short description.
+				</div>
+				<form id="new-trade-form" style="display: none;" action="/trades/new/2" method="post"></form>
+				<input class="open-trade-button" form="new-trade-form" type="submit" value="Open trade">
+			</div>
+		</div>
+	</div>
+	<section>
+		<h3 class="sect-header">Description</h3>
+		<div class="offer-long-desc">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lobortis egestas sem, eu tincidunt sapien elementum at. Pellentesque ante augue, placerat non justo posuere, laoreet consectetur lectus. Aliquam elementum orci nec nunc vulputate dignissim a id nisl. Pellentesque euismod blandit ante, lobortis consectetur lectus dapibus et. Curabitur ex dolor, tempor vitae mi vel, tincidunt feugiat quam. Sed elementum blandit vehicula. Suspendisse potenti. Proin nec diam odio. Integer pellentesque magna in sapien scelerisque, ac finibus ipsum elementum.</p>
+			<p>Proin vitae imperdiet nulla. Quisque sed odio ac lorem egestas laoreet. Vestibulum at nisl eu elit auctor gravida. Curabitur iaculis mattis nibh eu pretium. Nunc non mollis quam, vel mollis mauris. Donec accumsan suscipit vestibulum. Nullam lobortis risus non velit consectetur suscipit. Curabitur interdum est ipsum. Vestibulum sit amet diam cursus, volutpat ligula ac, porta dolor. Vestibulum interdum, enim non accumsan hendrerit, ipsum arcu vulputate sem, at maximus nisi urna egestas felis. Vivamus semper congue aliquet.</p>
+		</div>
+	</section>
+</div>
 {/body}
 
 {/include}

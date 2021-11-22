@@ -13,7 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
+import javax.ws.rs.core.Response.Status;
 
 import com.masflam.foirejo.Utils;
 import com.masflam.foirejo.data.Currency;
@@ -139,15 +141,9 @@ public class WebsiteResource {
 				if (offer.getCurrency() == Currency.XMR) {
 					return Utils.humanizeMoneroAmount(offer.getPrice());
 				}
-				double moneroBtc = priceService.getPriceInBtc(Currency.XMR);
-				double otherBtc = priceService.getPriceInBtc(offer.getCurrency());
-				return Utils.humanizeMoneroAmount(Math.round(
-					offer.getPrice() /
-					(double) offer.getCurrency().getDenom() *
-					otherBtc /
-					moneroBtc *
-					Currency.XMR.getDenom()
-				));
+				return Utils.humanizeMoneroAmount(
+					priceService.asPiconero(offer.getPrice(), offer.getCurrency())
+				);
 			}).collect(Collectors.toList());
 		return offersTemplate
 			.data("user", user)
@@ -162,14 +158,25 @@ public class WebsiteResource {
 	@GET
 	@Path("/offers/{offerId}")
 	@PermitAll
-	public TemplateInstance offer(@Context SecurityContext sec, @PathParam("offerId") Long offerId) {
+	public Response offer(@Context SecurityContext sec, @PathParam("offerId") Long offerId) {
 		//User user = userRepo.findByUsername("user");
 		User user = null;
 		if (sec.getUserPrincipal() != null) {
 			user = userRepo.findByUsername(sec.getUserPrincipal().getName());
 		}
-		return offerTemplate
-			.data("user", user);
+		Offer offer = offerRepo.findById(offerId);
+		if (offer == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		String humanPrice = Utils.humanizeMoneroAmount(
+			priceService.asPiconero(offer.getPrice(), offer.getCurrency())
+		);
+		return Response.ok(
+			offerTemplate
+				.data("user", user)
+				.data("offer", offer)
+				.data("humanPrice", humanPrice)
+		).build();
 	}
 	
 	@Authenticated
