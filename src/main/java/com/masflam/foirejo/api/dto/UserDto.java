@@ -1,6 +1,6 @@
-package com.masflam.monerobarter.api.dto;
+package com.masflam.foirejo.api.dto;
 
-import com.masflam.monerobarter.data.User;
+import com.masflam.foirejo.data.User;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 

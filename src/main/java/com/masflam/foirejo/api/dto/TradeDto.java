@@ -1,7 +1,7 @@
-package com.masflam.monerobarter.api.dto;
+package com.masflam.foirejo.api.dto;
 
-import com.masflam.monerobarter.data.Currency;
-import com.masflam.monerobarter.data.Trade;
+import com.masflam.foirejo.data.Currency;
+import com.masflam.foirejo.data.Trade;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 

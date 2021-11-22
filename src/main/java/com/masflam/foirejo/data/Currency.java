@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.data;
+package com.masflam.foirejo.data;
 
 public enum Currency {
 	XMR("monero", 1_000_000_000_000L, false),

@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.api;
+package com.masflam.foirejo.api;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -11,14 +11,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.Response.Status;
 
-import com.masflam.monerobarter.annotation.RestResource;
-import com.masflam.monerobarter.api.dto.TradeDto;
-import com.masflam.monerobarter.data.Offer;
-import com.masflam.monerobarter.data.OfferRepository;
-import com.masflam.monerobarter.data.Trade;
-import com.masflam.monerobarter.data.TradeRepository;
-import com.masflam.monerobarter.data.User;
-import com.masflam.monerobarter.data.UserRepository;
+import com.masflam.foirejo.annotation.RestResource;
+import com.masflam.foirejo.api.dto.TradeDto;
+import com.masflam.foirejo.data.Offer;
+import com.masflam.foirejo.data.OfferRepository;
+import com.masflam.foirejo.data.Trade;
+import com.masflam.foirejo.data.TradeRepository;
+import com.masflam.foirejo.data.User;
+import com.masflam.foirejo.data.UserRepository;
 
 import io.quarkus.security.Authenticated;
 

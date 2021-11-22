@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.data;
+package com.masflam.foirejo.data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,19 +6,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Offer {
+public class Trade {
 	@GeneratedValue
 	@Id
 	private Long id;
 	
-	private String title;
+	@ManyToOne(optional = false)
+	private Offer offer;
 	
 	private Long price;
 	
 	private Currency currency;
 	
-	@ManyToOne(optional = false) // TODO
-	private User owner;
+	@ManyToOne(optional = false)
+	private User buyer;
 	
 	public Long getId() {
 		return id;
@@ -28,20 +29,12 @@ public class Offer {
 		this.id = id;
 	}
 	
-	public String getTitle() {
-		return title;
+	public Offer getOffer() {
+		return offer;
 	}
 	
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
-	public User getOwner() {
-		return owner;
-	}
-	
-	public void setOwner(User owner) {
-		this.owner = owner;
+	public void setOffer(Offer offer) {
+		this.offer = offer;
 	}
 	
 	public Long getPrice() {
@@ -58,5 +51,13 @@ public class Offer {
 	
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
+	}
+	
+	public User getBuyer() {
+		return buyer;
+	}
+	
+	public void setBuyer(User buyer) {
+		this.buyer = buyer;
 	}
 }

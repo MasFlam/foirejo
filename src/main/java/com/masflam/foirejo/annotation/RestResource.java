@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.annotation;
+package com.masflam.foirejo.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

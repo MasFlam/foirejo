@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.data;
+package com.masflam.foirejo.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,14 +1,14 @@
-package com.masflam.monerobarter;
+package com.masflam.foirejo;
 
 import javax.enterprise.event.Observes;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
 
-import com.masflam.monerobarter.data.Currency;
-import com.masflam.monerobarter.data.Offer;
-import com.masflam.monerobarter.data.OfferRepository;
-import com.masflam.monerobarter.data.User;
-import com.masflam.monerobarter.data.UserRepository;
+import com.masflam.foirejo.data.Currency;
+import com.masflam.foirejo.data.Offer;
+import com.masflam.foirejo.data.OfferRepository;
+import com.masflam.foirejo.data.User;
+import com.masflam.foirejo.data.UserRepository;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.runtime.StartupEvent;

@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.website;
+package com.masflam.foirejo.website;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,13 +15,13 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
-import com.masflam.monerobarter.Utils;
-import com.masflam.monerobarter.data.Currency;
-import com.masflam.monerobarter.data.Offer;
-import com.masflam.monerobarter.data.OfferRepository;
-import com.masflam.monerobarter.data.User;
-import com.masflam.monerobarter.data.UserRepository;
-import com.masflam.monerobarter.service.CurrencyPriceService;
+import com.masflam.foirejo.Utils;
+import com.masflam.foirejo.data.Currency;
+import com.masflam.foirejo.data.Offer;
+import com.masflam.foirejo.data.OfferRepository;
+import com.masflam.foirejo.data.User;
+import com.masflam.foirejo.data.UserRepository;
+import com.masflam.foirejo.service.CurrencyPriceService;
 
 import io.quarkus.qute.Location;
 import io.quarkus.qute.Template;

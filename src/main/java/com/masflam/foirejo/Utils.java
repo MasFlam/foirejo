@@ -1,4 +1,4 @@
-package com.masflam.monerobarter;
+package com.masflam.foirejo;
 
 public class Utils {
 	public static String humanizeMoneroAmount(long pico) {

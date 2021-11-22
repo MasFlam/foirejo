@@ -1,4 +1,4 @@
-package com.masflam.monerobarter.service;
+package com.masflam.foirejo.service;
 
 import java.io.IOException;
 import java.net.URI;
@@ -12,7 +12,7 @@ import javax.inject.Singleton;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.masflam.monerobarter.data.Currency;
+import com.masflam.foirejo.data.Currency;
 
 import io.quarkus.cache.CacheResult;
 
