@@ -14,8 +14,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
 
 import com.masflam.foirejo.Utils;
 import com.masflam.foirejo.data.Currency;
@@ -61,19 +61,6 @@ public class WebsiteResource {
 	@Inject
 	@Location("offer.html")
 	public Template offerTemplate;
-	
-	@Inject
-	@Location("style.css")
-	public Template styleCssTemplate;
-	
-	// TODO: this should really be a static resource thing idk how that's done tho
-	@GET
-	@Path("/style.css")
-	@PermitAll
-	@Produces("text/css")
-	public TemplateInstance styleCss() {
-		return styleCssTemplate.instance();
-	}
 	
 	@GET
 	@Path("/")
