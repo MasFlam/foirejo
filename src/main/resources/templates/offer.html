@@ -8,20 +8,22 @@
 			<img src="https://masflam.com/static/headthink.png" class="offer-image">
 		</div>
 		<div style="padding-left: 10px;">
-			<h1 class="sect-header" style="margin: 0 5px;">{humanPrice}</h1>
-			<div class="price-columns">
-				<div>0.42069 ₿</div>
-				<div>127.42 $</div>
-				<div>69.42 €</div>
+			<div style="background-color: lightgray;">
+				<h1 class="sect-header" style="margin: 0 5px;">{humanPrice}</h1>
+				<div class="price-columns">
+					<div>{btcPrice} ₿</div>
+					<div>{usdPrice} $</div>
+					<div>{eurPrice} €</div>
+				</div>
 			</div>
 			<div style="padding: 10px;">
+				<div class="offer-short-desc">
+					Short description.
+				</div>
 				<div>
 					Trade owner:
 					<a href="/users/{offer.getOwner().getId()}" class="offer-owner">{offer.getOwner().getUsername()}</a>
 					<span class="owner-rating">100% (7 trades)</span>
-				</div>
-				<div class="offer-short-desc">
-					Short description.
 				</div>
 				<form id="new-trade-form" style="display: none;" action="/trades/new/2" method="post"></form>
 				<input class="open-trade-button" form="new-trade-form" type="submit" value="Open trade">

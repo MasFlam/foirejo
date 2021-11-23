@@ -141,9 +141,9 @@ public class WebsiteResource {
 				if (offer.getCurrency() == Currency.XMR) {
 					return Utils.humanizeMoneroAmount(offer.getPrice());
 				}
-				return Utils.humanizeMoneroAmount(
-					priceService.asPiconero(offer.getPrice(), offer.getCurrency())
-				);
+				return Utils.humanizeMoneroAmount(Math.round(
+					priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)
+				));
 			}).collect(Collectors.toList());
 		return offersTemplate
 			.data("user", user)
@@ -168,14 +168,22 @@ public class WebsiteResource {
 		if (offer == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
-		String humanPrice = Utils.humanizeMoneroAmount(
-			priceService.asPiconero(offer.getPrice(), offer.getCurrency())
-		);
+		String humanPrice = Utils.humanizeMoneroAmount(Math.round(
+			priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)
+		));
+		// TODO modularize out price formatting
+		System.out.println("-----");
+		long btc = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.BTC)); System.out.println("-----> " + btc);
+		long usd = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.USD)); System.out.println("-----> " + usd);
+		long eur = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.EUR)); System.out.println("-----> " + eur);
 		return Response.ok(
 			offerTemplate
 				.data("user", user)
 				.data("offer", offer)
 				.data("humanPrice", humanPrice)
+				.data("btcPrice", String.format("%d.%08d", btc / Currency.BTC.getDenom(), btc % Currency.BTC.getDenom()))
+				.data("usdPrice", String.format("%d.%02d", usd / Currency.USD.getDenom(), usd % Currency.USD.getDenom()))
+				.data("eurPrice", String.format("%d.%02d", eur / Currency.EUR.getDenom(), eur % Currency.EUR.getDenom()))
 		).build();
 	}
 	

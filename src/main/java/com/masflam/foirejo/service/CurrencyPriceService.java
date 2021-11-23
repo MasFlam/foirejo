@@ -5,6 +5,10 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -20,66 +24,116 @@ import io.quarkus.cache.CacheResult;
 public class CurrencyPriceService {
 	private static final String COINGECKO_ENDPOINT = "https://api.coingecko.com/api/v3/simple/price";
 	
+	private static final String CRYPTO_IDS = Arrays.stream(Currency.values())
+		.filter(c -> !c.isFiat() && c != Currency.BTC)
+		.map(Currency::getId)
+		.collect(Collectors.joining(","));
+	
+	private static final String FIAT_IDS = Arrays.stream(Currency.values())
+		.filter(Currency::isFiat)
+		.map(Currency::getId)
+		.collect(Collectors.joining(","));
+	
+	private static final URI BTC_PRICE_ENDPOINT_URI = URI.create(COINGECKO_ENDPOINT + "?ids=bitcoin&vs_currencies=" + FIAT_IDS);
+	private static final URI CRYPTO_PRICE_ENDPOINT_URI = URI.create(COINGECKO_ENDPOINT + "?vs_currencies=btc&ids=" + CRYPTO_IDS);
+	
 	private HttpClient httpClient = HttpClient.newHttpClient();
 	
 	@Inject
 	ObjectMapper mapper;
 	
-	
 	@CacheResult(cacheName = "btc-price-cache")
-	double btcPriceInFiat(Currency currency) throws JsonMappingException, JsonProcessingException, IOException, InterruptedException {
-		return mapper
-			.readTree(
-				httpClient.send(
-					HttpRequest.newBuilder(URI.create(COINGECKO_ENDPOINT + "?ids=bitcoin&vs_currencies=" + currency.getId()))
-						.header("Accept", "application/json")
-						.build(),
-					BodyHandlers.ofString()
-				).body()
-			).get("bitcoin")
-			.get(currency.getId())
-			.asDouble();
+	Map<Currency, Double> btcPriceInFiats() throws JsonMappingException, JsonProcessingException, IOException, InterruptedException {
+		var resp = mapper.readTree(
+			httpClient.send(
+				HttpRequest.newBuilder(BTC_PRICE_ENDPOINT_URI)
+					.header("Accept", "application/json")
+					.build(),
+				BodyHandlers.ofString()
+			).body()
+		);
+		Map<Currency, Double> map = new EnumMap<>(Currency.class);
+		for (var currency : Currency.values()) {
+			if (!currency.isFiat()) continue;
+			map.put(currency, resp.get("bitcoin").get(currency.getId()).asDouble() * currency.getDenom() / Currency.BTC.getDenom());
+		}
+		return map;
 	}
 	
 	@CacheResult(cacheName = "crypto-price-cache")
-	double cryptoPriceInBtc(Currency currency) throws JsonMappingException, JsonProcessingException, IOException, InterruptedException {
-		return mapper
-			.readTree(
-				httpClient.send(
-					HttpRequest.newBuilder(URI.create(COINGECKO_ENDPOINT + "?vs_currencies=btc&ids=" + currency.getId()))
-						.header("Accept", "application/json")
-						.build(),
-					BodyHandlers.ofString()
-				).body()
-			).get(currency.getId())
-			.get("btc")
-			.asDouble();
+	Map<Currency, Double> cryptoPricesInBtc() throws JsonMappingException, JsonProcessingException, IOException, InterruptedException {
+		var resp = mapper.readTree(
+			httpClient.send(
+				HttpRequest.newBuilder(CRYPTO_PRICE_ENDPOINT_URI)
+					.header("Accept", "application/json")
+					.build(),
+				BodyHandlers.ofString()
+			).body()
+		);
+		Map<Currency, Double> map = new EnumMap<>(Currency.class);
+		for (var currency : Currency.values()) {
+			if (currency.isFiat() || currency == Currency.BTC) continue;
+			map.put(currency, resp.get(currency.getId()).get("btc").asDouble() * Currency.BTC.getDenom() / currency.getDenom());
+		}
+		return map;
 	}
 	
-	public double getPriceInBtc(Currency currency) {
-		try {
-			if (currency == Currency.BTC) {
-				return 1;
-			} else if (currency.isFiat()) {
-				return 1 / btcPriceInFiat(currency);
+	//public long getPriceInBtc(Currency currency) {
+	//	try {
+	//		if (currency == Currency.BTC) {
+	//			return 1;
+	//		} else if (currency.isFiat()) {
+	//			return Math.round(1d / btcPriceInFiat(currency) * Currency.BTC.getDenom());
+	//		} else {
+	//			return Math.round(cryptoPriceInBtc(currency) * Currency.BTC.getDenom());
+	//		}
+	//	} catch (Throwable t) {
+	//		t.printStackTrace();
+	//		return -1;
+	//	}
+	//}
+	
+	// This is a separate method so that no cache invalidations happen before the recursive call
+	double convertWith(Map<Currency, Double> btcInFiat, Map<Currency, Double> cryptoInBtc, double amount, Currency from, Currency to) {
+		System.out.println("convert(" + amount + ", " + from + ", " + to + ")");
+		if (from == to) {
+			return amount;
+		} else if (from == Currency.BTC) {
+			if (to.isFiat()) {
+				return amount * btcInFiat.get(to);
 			} else {
-				return cryptoPriceInBtc(currency);
+				return amount / cryptoInBtc.get(to);
 			}
-		} catch(Throwable t) {
+		} else if (to == Currency.BTC) {
+			if (from.isFiat()) {
+				return amount / btcInFiat.get(from);
+			} else {
+				return amount * cryptoInBtc.get(from);
+			}
+		} else {
+			return convertWith(btcInFiat, cryptoInBtc, convertWith(btcInFiat, cryptoInBtc, amount, from, Currency.BTC), Currency.BTC, to);
+		}
+	}
+	
+	// This all works on minimal denominations of the currencies
+	public double convert(double amount, Currency from, Currency to) {
+		try {
+			return convertWith(btcPriceInFiats(), cryptoPricesInBtc(), amount, from, to);
+		} catch (Throwable t) {
 			t.printStackTrace();
 			return -1;
 		}
 	}
 	
-	public long asPiconero(long amount, Currency currency) {
-		double moneroBtc = getPriceInBtc(Currency.XMR);
-		double otherBtc = getPriceInBtc(currency);
-		return Math.round(
-			amount /
-			(double) currency.getDenom() *
-			otherBtc /
-			moneroBtc *
-			Currency.XMR.getDenom()
-		);
-	}
+	//public long asPiconero(long amount, Currency currency) {
+	//	double moneroBtc = getPriceInBtc(Currency.XMR);
+	//	double otherBtc = getPriceInBtc(currency);
+	//	return Math.round(
+	//		amount /
+	//		(double) currency.getDenom() *
+	//		otherBtc /
+	//		moneroBtc *
+	//		Currency.XMR.getDenom()
+	//	);
+	//}
 }
