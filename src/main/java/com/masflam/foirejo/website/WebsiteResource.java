@@ -139,9 +139,9 @@ public class WebsiteResource {
 		List<String> offerPrices = offers.stream()
 			.map(offer -> {
 				if (offer.getCurrency() == Currency.XMR) {
-					return Utils.humanizeMoneroAmount(offer.getPrice());
+					return Utils.humanizeXmrAmount(offer.getPrice());
 				}
-				return Utils.humanizeMoneroAmount(Math.round(
+				return Utils.humanizeXmrAmount(Math.round(
 					priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)
 				));
 			}).collect(Collectors.toList());
@@ -168,22 +168,18 @@ public class WebsiteResource {
 		if (offer == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}
-		String humanPrice = Utils.humanizeMoneroAmount(Math.round(
-			priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)
-		));
-		// TODO modularize out price formatting
-		System.out.println("-----");
-		long btc = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.BTC)); System.out.println("-----> " + btc);
-		long usd = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.USD)); System.out.println("-----> " + usd);
-		long eur = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.EUR)); System.out.println("-----> " + eur);
+		long xmr = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR));
+		long btc = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.BTC));
+		long usd = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.USD));
+		long eur = Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.EUR));
 		return Response.ok(
 			offerTemplate
 				.data("user", user)
 				.data("offer", offer)
-				.data("humanPrice", humanPrice)
-				.data("btcPrice", String.format("%d.%08d", btc / Currency.BTC.getDenom(), btc % Currency.BTC.getDenom()))
-				.data("usdPrice", String.format("%d.%02d", usd / Currency.USD.getDenom(), usd % Currency.USD.getDenom()))
-				.data("eurPrice", String.format("%d.%02d", eur / Currency.EUR.getDenom(), eur % Currency.EUR.getDenom()))
+				.data("xmrPrice", Utils.humanizeXmrAmount(xmr))
+				.data("btcPrice", Utils.humanizeBtcAmount(btc))
+				.data("usdPrice", Utils.humanizeUsdAmount(usd))
+				.data("eurPrice", Utils.humanizeEurAmount(eur))
 		).build();
 	}
 	

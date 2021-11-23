@@ -22,6 +22,8 @@ import io.quarkus.cache.CacheResult;
 
 @Singleton
 public class CurrencyPriceService {
+	// TODO: work out if doubles have enough precision for every case
+	
 	private static final String COINGECKO_ENDPOINT = "https://api.coingecko.com/api/v3/simple/price";
 	
 	private static final String CRYPTO_IDS = Arrays.stream(Currency.values())
@@ -78,20 +80,6 @@ public class CurrencyPriceService {
 		return map;
 	}
 	
-	//public long getPriceInBtc(Currency currency) {
-	//	try {
-	//		if (currency == Currency.BTC) {
-	//			return 1;
-	//		} else if (currency.isFiat()) {
-	//			return Math.round(1d / btcPriceInFiat(currency) * Currency.BTC.getDenom());
-	//		} else {
-	//			return Math.round(cryptoPriceInBtc(currency) * Currency.BTC.getDenom());
-	//		}
-	//	} catch (Throwable t) {
-	//		t.printStackTrace();
-	//		return -1;
-	//	}
-	//}
 	
 	// This is a separate method so that no cache invalidations happen before the recursive call
 	double convertWith(Map<Currency, Double> btcInFiat, Map<Currency, Double> cryptoInBtc, double amount, Currency from, Currency to) {
@@ -124,16 +112,4 @@ public class CurrencyPriceService {
 			return -1;
 		}
 	}
-	
-	//public long asPiconero(long amount, Currency currency) {
-	//	double moneroBtc = getPriceInBtc(Currency.XMR);
-	//	double otherBtc = getPriceInBtc(currency);
-	//	return Math.round(
-	//		amount /
-	//		(double) currency.getDenom() *
-	//		otherBtc /
-	//		moneroBtc *
-	//		Currency.XMR.getDenom()
-	//	);
-	//}
 }

@@ -17,7 +17,7 @@ public class Offer {
 	
 	private Currency currency;
 	
-	@ManyToOne(optional = false) // TODO
+	@ManyToOne(optional = false)
 	private User owner;
 	
 	public Long getId() {
