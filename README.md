@@ -13,7 +13,8 @@ Foirejo is shared under the terms of the GNU Affero General Public License versi
 a CCS proposal is out of reach, since all source code for one must be under a permissive license.
 Therefore, if you want to support the development of Foirejo, feel free to tip some XMR directly:
 
-MasFlam – `89D4wqCMjwvhxGWyux9PhkdMBuYBuRQSH2pc7LthSQ2ZJcuEzHfXd37KzsMamppcV3WPFbMsBLVziHWHHnzMubiWHEGJD8u`
+- MasFlam: ([QR Code](masflam-xmr-qr.png))  
+  `89D4wqCMjwvhxGWyux9PhkdMBuYBuRQSH2pc7LthSQ2ZJcuEzHfXd37KzsMamppcV3WPFbMsBLVziHWHHnzMubiWHEGJD8u`
 
 <!--
 # foirejo Project
