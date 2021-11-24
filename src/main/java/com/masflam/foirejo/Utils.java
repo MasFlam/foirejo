@@ -1,6 +1,6 @@
 package com.masflam.foirejo;
 
-import java.util.Locale;
+import java.text.DecimalFormat;
 
 import com.masflam.foirejo.data.Currency;
 
@@ -43,7 +43,11 @@ public class Utils {
 		return pages;
 	}
 	
-	// TODO: format amounts differently so that there aren't multiple zeros after '.'
+	// The javadoc says nothing about DecimalFormat being safe to use concurrently,
+	// so use these only inside synchronized blocks
+	private static DecimalFormat DECIMAL_FORMAT_BTC = new DecimalFormat("#.########");
+	private static DecimalFormat DECIMAL_FORMAT_XMR = new DecimalFormat("#.###");
+	private static DecimalFormat DECIMAL_FORMAT_FIAT = new DecimalFormat("#.##");
 	
 	public static String humanizeAmount(long amount, Currency currency) {
 		switch (currency) {
@@ -59,8 +63,9 @@ public class Utils {
 		long abs = Math.abs(satoshis);
 		if (abs < 1_000) {
 			return satoshis + " sat";
-		} else {
-			return String.format(Locale.ENGLISH, "%d.%08d", satoshis / 100_000_000L, abs % 100_000_000L) + " ₿";
+		}
+		synchronized (DECIMAL_FORMAT_BTC) {
+			return DECIMAL_FORMAT_BTC.format(satoshis / 1e8) + " ₿";
 		}
 	}
 	
@@ -68,24 +73,29 @@ public class Utils {
 		long abs = Math.abs(piconero);
 		if (abs < 1_000L) {
 			return piconero + " pɱ";
-		} else if (abs < 1_000_000L) {
-			return String.format(Locale.ENGLISH, "%d.%03d nɱ", piconero / 1_000L, abs % 1_000L);
-		} else if (abs < 1_000_000_000L) {
-			return String.format(Locale.ENGLISH, "%d.%03d µɱ", piconero / 1_000_000L, abs % 1_000_000L / 1_000L);
-		} else if (abs < 1_000_000_000_000L) {
-			return String.format(Locale.ENGLISH, "%d.%03d mɱ", piconero / 1_000_000_000L, abs % 1_000_000_000L / 1_000_000L);
-		} else {
-			return String.format(Locale.ENGLISH, "%d.%03d ɱ", piconero / 1_000_000_000_000L, abs % 1_000_000_000_000L / 1_000_000_000L);
+		}
+		synchronized (DECIMAL_FORMAT_XMR) {
+			if (abs < 1_000_000L) {
+				return DECIMAL_FORMAT_XMR.format(piconero / 1e3) + " nɱ";
+			} else if (abs < 1_000_000_000L) {
+				return DECIMAL_FORMAT_XMR.format(piconero / 1e6) + " µɱ";
+			} else if (abs < 1_000_000_000_000L) {
+				return DECIMAL_FORMAT_XMR.format(piconero / 1e9) + " mɱ";
+			} else {
+				return DECIMAL_FORMAT_XMR.format(piconero / 1e12) + " ɱ";
+			}
 		}
 	}
 	
 	public static String humanizeUsdAmount(long cents) {
-		long abs = Math.abs(cents);
-		return String.format(Locale.ENGLISH, "%d.%02d $", cents / 100L, abs % 100L);
+		synchronized (DECIMAL_FORMAT_FIAT) {
+			return DECIMAL_FORMAT_FIAT.format(cents / 100.0) + " $";
+		}
 	}
 	
 	public static String humanizeEurAmount(long eurocents) {
-		long abs = Math.abs(eurocents);
-		return String.format(Locale.ENGLISH, "%d.%02d €", eurocents / 100L, abs % 100L);
+		synchronized (DECIMAL_FORMAT_FIAT) {
+			return DECIMAL_FORMAT_FIAT.format(eurocents / 100.0) + " €";
+		}
 	}
 }
