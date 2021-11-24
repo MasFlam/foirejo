@@ -6,7 +6,7 @@ as long as it's legal. Think craigslist, but global and only using Monero.
 
 # Contributing
 The project is written in Java and uses Quarkus for the backend with Qute
-for templating HTML and CSS. Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
+for templating HTML. Read [CONTRIBUTING.md](CONTRIBUTING.md) to get started.
 
 # License and Donations
 Foirejo is shared under the terms of the GNU Affero General Public License version 3. This means
@@ -15,6 +15,8 @@ Therefore, if you want to support the development of Foirejo, feel free to tip s
 
 - MasFlam: ([QR Code](masflam-xmr-qr.png))  
   `89D4wqCMjwvhxGWyux9PhkdMBuYBuRQSH2pc7LthSQ2ZJcuEzHfXd37KzsMamppcV3WPFbMsBLVziHWHHnzMubiWHEGJD8u`
+
+A couple of contributions will land you on this list too, so feel incentivized ;).
 
 <!--
 # foirejo Project

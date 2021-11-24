@@ -225,8 +225,43 @@ ul.nav a:hover {
 	font-size: larger;
 }
 
-.offer-long-desc {
+.full-content {
 	max-width: 1200px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.full-content a {
+	text-decoration: none;
+	color: dodgerblue;
+}
+
+.full-content a:hover {
+	color: inherit;
+}
+
+.devs-tiles {
+	border-collapse: collapse;
+	border: 1px solid gray;
+}
+
+.devs-tiles th, .devs-tiles td {
+	border: 1px solid gray;
+}
+
+.devs-tiles td:nth-child(2) {
+	padding: 10px;
+}
+
+.devs-tiles td > h2 {
+	margin: 0 0 5px 0;
+}
+
+.wallet {
+	font-family: monospace;
+	font-weight: bold;
+	padding: 3px;
+	border: 1px solid gray;
+	border-radius: 3px;
+	background-color: lightgray
 }
