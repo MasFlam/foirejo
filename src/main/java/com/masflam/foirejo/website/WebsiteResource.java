@@ -87,51 +87,15 @@ public class WebsiteResource {
 			user = userRepo.findByUsername(sec.getUserPrincipal().getName());
 		}
 		var query = offerRepo.findAll().page(pageIndex - 1, 20); // TODO make page size configable?
-		int pageCount = (int) query.count();
-		pageCount = 20;
-		int[] pages;
-		if (pageCount == 0) {
-			pageCount = 1;
-			pages = new int[] {1};
-		} else if (pageCount <= 10) {
-			pages = new int[pageCount];
-			for (int i = 0; i < pageCount; ++i) {
-				pages[i] = i+1;
-			}
-		} else if (pageIndex <= 4) {
-			pages = new int[7];
-			for (int i = 0; i < 5; ++i) {
-				pages[i] = i+1;
-			}
-			pages[5] = 0;
-			pages[6] = pageCount;
-		} else if (pageIndex >= pageCount - 3) {
-			pages = new int[7];
-			for (int i = 0; i < 5; ++i) {
-				pages[i + 2] = pageCount - (4-i);
-			}
-			pages[1] = 0;
-			pages[0] = 1;
-		} else {
-			pages = new int[9];
-			for (int i = 0; i < 5; ++i) {
-				pages[i + 2] = pageIndex + i-2;
-			}
-			pages[7] = 0;
-			pages[8] = pageCount;
-			pages[1] = 0;
-			pages[0] = 1;
-		}
+		int pageCount = (int) query.pageCount();
+		//pageCount = 15;
+		int[] pages = Utils.pageNumbersFor(pageIndex, pageCount);
 		List<Offer> offers = query.list();
 		List<String> offerPrices = offers.stream()
-			.map(offer -> {
-				if (offer.getCurrency() == Currency.XMR) {
-					return Utils.humanizeXmrAmount(offer.getPrice());
-				}
-				return Utils.humanizeXmrAmount(Math.round(
-					priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)
-				));
-			}).collect(Collectors.toList());
+			.map(offer -> Utils.humanizeXmrAmount(Math.round(
+				priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)
+			)))
+			.collect(Collectors.toList());
 		return offersTemplate
 			.data("user", user)
 			.data("pageNums", pages)

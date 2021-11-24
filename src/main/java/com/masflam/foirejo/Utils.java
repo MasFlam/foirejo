@@ -5,6 +5,44 @@ import java.util.Locale;
 import com.masflam.foirejo.data.Currency;
 
 public class Utils {
+	// Page number 0 in th array means a place for an ellipsis
+	public static int[] pageNumbersFor(int pageIndex, int pageCount) {
+		int[] pages;
+		if (pageCount == 0) {
+			pageCount = 1;
+			pages = new int[] {1};
+		} else if (pageCount <= 10) {
+			pages = new int[pageCount];
+			for (int i = 0; i < pageCount; ++i) {
+				pages[i] = i+1;
+			}
+		} else if (pageIndex <= 4) {
+			pages = new int[7];
+			for (int i = 0; i < 5; ++i) {
+				pages[i] = i+1;
+			}
+			pages[5] = 0;
+			pages[6] = pageCount;
+		} else if (pageIndex >= pageCount - 3) {
+			pages = new int[7];
+			for (int i = 0; i < 5; ++i) {
+				pages[i + 2] = pageCount - (4-i);
+			}
+			pages[1] = 0;
+			pages[0] = 1;
+		} else {
+			pages = new int[9];
+			for (int i = 0; i < 5; ++i) {
+				pages[i + 2] = pageIndex + i-2;
+			}
+			pages[7] = 0;
+			pages[8] = pageCount;
+			pages[1] = 0;
+			pages[0] = 1;
+		}
+		return pages;
+	}
+	
 	// TODO: format amounts differently so that there aren't multiple zeros after '.'
 	
 	public static String humanizeAmount(long amount, Currency currency) {
