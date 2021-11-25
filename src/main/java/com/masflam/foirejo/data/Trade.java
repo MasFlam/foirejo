@@ -16,8 +16,6 @@ public class Trade {
 	
 	private Long price;
 	
-	private Currency currency;
-	
 	@ManyToOne(optional = false)
 	private User buyer;
 	
@@ -43,14 +41,6 @@ public class Trade {
 	
 	public void setPrice(Long price) {
 		this.price = price;
-	}
-	
-	public Currency getCurrency() {
-		return currency;
-	}
-	
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
 	}
 	
 	public User getBuyer() {

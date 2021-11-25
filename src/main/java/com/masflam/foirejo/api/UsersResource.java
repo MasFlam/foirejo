@@ -98,6 +98,17 @@ public class UsersResource {
 	}
 	
 	@GET
+	@Path("/{userId}")
+	@PermitAll
+	public Response getUserById(@PathParam("userId") Long userId) {
+		User user = userRepo.findById(userId);
+		if (user == null) {
+			return Response.status(Status.NOT_FOUND).build();
+		}
+		return Response.ok(new UserDto(user)).build();
+	}
+	
+	@GET
 	@Path("/{userId}/offers")
 	@PermitAll
 	public Response getOffersByOwnerId(

@@ -50,6 +50,7 @@ public class OffersResource {
 		User owner = userRepo.findByUsername(sec.getUserPrincipal().getName());
 		var offer = new Offer();
 		offer.setTitle(offerDto.getTitle());
+		offer.setShortDesc(offerDto.getShortDesc());
 		offer.setOwner(owner);
 		offer.setPrice(offerDto.getPrice());
 		offer.setCurrency(offerDto.getCurrency());
@@ -74,6 +75,7 @@ public class OffersResource {
 			return Response.status(Status.FORBIDDEN).build();
 		}
 		offer.setTitle(offerDto.getTitle());
+		offer.setShortDesc(offerDto.getShortDesc());
 		offer.setPrice(offerDto.getPrice());
 		offer.setCurrency(offerDto.getCurrency());
 		offerRepo.persist(offer);

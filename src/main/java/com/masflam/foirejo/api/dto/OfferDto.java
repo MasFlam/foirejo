@@ -9,13 +9,15 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 public class OfferDto {
 	private Long id;
 	private String title;
+	private String shortDesc;
 	private Long ownerId;
 	private Long price;
 	private Currency currency;
 	
-	public OfferDto(Long id, String title, Long ownerId, Long price, Currency currency) {
+	public OfferDto(Long id, String title, String shortDesc, Long ownerId, Long price, Currency currency) {
 		this.id = id;
 		this.title = title;
+		this.shortDesc = shortDesc;
 		this.ownerId = ownerId;
 		this.price = price;
 		this.currency = currency;
@@ -23,8 +25,8 @@ public class OfferDto {
 	
 	public OfferDto(Offer offer) {
 		this(
-			offer.getId(), offer.getTitle(), offer.getOwner().getId(),
-			offer.getPrice(), offer.getCurrency()
+			offer.getId(), offer.getTitle(), offer.getShortDesc(),
+			offer.getOwner().getId(), offer.getPrice(), offer.getCurrency()
 		);
 	}
 	
@@ -42,6 +44,14 @@ public class OfferDto {
 	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getShortDesc() {
+		return shortDesc;
+	}
+	
+	public void setShortDesc(String shortDesc) {
+		this.shortDesc = shortDesc;
 	}
 	
 	public Long getOwnerId() {

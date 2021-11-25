@@ -8,17 +8,19 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
 
 import com.masflam.foirejo.annotation.RestResource;
 import com.masflam.foirejo.api.dto.TradeDto;
+import com.masflam.foirejo.data.Currency;
 import com.masflam.foirejo.data.Offer;
 import com.masflam.foirejo.data.OfferRepository;
 import com.masflam.foirejo.data.Trade;
 import com.masflam.foirejo.data.TradeRepository;
 import com.masflam.foirejo.data.User;
 import com.masflam.foirejo.data.UserRepository;
+import com.masflam.foirejo.service.CurrencyPriceService;
 
 import io.quarkus.security.Authenticated;
 
@@ -33,6 +35,9 @@ public class TradesResource {
 	
 	@Inject
 	public TradeRepository tradeRepo;
+	
+	@Inject
+	public CurrencyPriceService priceService;
 	
 	@Authenticated
 	@GET
@@ -62,8 +67,7 @@ public class TradesResource {
 		User buyer = userRepo.findByUsername(sec.getUserPrincipal().getName());
 		Trade trade = new Trade();
 		trade.setOffer(offer);
-		trade.setPrice(offer.getPrice());
-		trade.setCurrency(offer.getCurrency());
+		trade.setPrice(Math.round(priceService.convert(offer.getPrice(), offer.getCurrency(), Currency.XMR)));
 		trade.setBuyer(buyer);
 		tradeRepo.persist(trade);
 		return Response.ok(new TradeDto(trade)).build();
