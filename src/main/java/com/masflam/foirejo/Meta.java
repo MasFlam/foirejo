@@ -25,6 +25,8 @@ public class Meta {
 		
 		var offer = new Offer();
 		offer.setTitle("Foo bar 1");
+		offer.setShortDesc("A bar of foo.");
+		offer.setLongDesc("Long description.");
 		offer.setPrice(150_000_000_000L);
 		offer.setCurrency(Currency.XMR);
 		offer.setOwner(user);
@@ -32,6 +34,8 @@ public class Meta {
 		
 		offer = new Offer();
 		offer.setTitle("Foo bar 2");
+		offer.setShortDesc("A very high quality bar of foo.");
+		offer.setLongDesc("Long description.");
 		offer.setPrice(250_00L);
 		offer.setCurrency(Currency.USD);
 		offer.setOwner(user);
@@ -39,6 +43,8 @@ public class Meta {
 		
 		offer = new Offer();
 		offer.setTitle("Foo bar 3");
+		offer.setShortDesc("The best foo bar on the market.");
+		offer.setLongDesc("Long description.");
 		offer.setPrice(100_000_000L);
 		offer.setCurrency(Currency.BTC);
 		offer.setOwner(user);
@@ -46,6 +52,8 @@ public class Meta {
 		
 		offer = new Offer();
 		offer.setTitle("Foo bar 4");
+		offer.setShortDesc("Some foo in the form of a bar.");
+		offer.setLongDesc("Long description.");
 		offer.setPrice(2_00L);
 		offer.setCurrency(Currency.EUR);
 		offer.setOwner(user);

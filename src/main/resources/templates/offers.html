@@ -18,10 +18,11 @@
 					<span>{offerPrices.get(index)}</span>
 					<img src="https://masflam.com/static/ihatethecsharp.gif">
 					<span>{offer.getTitle()}</span>
-					<p>Very good foo bar high quality bar of foo. I like the foo, and so should you. Moo moo.</p>
+					<p>{offer.getShortDesc()}</p>
 				</a>
 			</div>
 		{/for}
+		<!--
 		<div><a class="offer-thumb" href="#">
 			<span>100mɱ</span>
 			<img src="https://masflam.com/static/headthink.png">
@@ -58,6 +59,7 @@
 			<span>Foo bar</span>
 			<p>Very good foo bar high quality bar of foo.</p>
 		</a></div>
+		-->
 	</div>
 	{#include result_pages /}
 </div>

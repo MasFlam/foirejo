@@ -3,6 +3,7 @@ package com.masflam.foirejo.data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,6 +13,11 @@ public class Offer {
 	private Long id;
 	
 	private String title;
+	
+	private String shortDesc;
+	
+	@Lob
+	private String longDesc;
 	
 	private Long price;
 	
@@ -34,6 +40,22 @@ public class Offer {
 	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	public String getShortDesc() {
+		return shortDesc;
+	}
+	
+	public void setShortDesc(String shortDesc) {
+		this.shortDesc = shortDesc;
+	}
+	
+	public String getLongDesc() {
+		return longDesc;
+	}
+	
+	public void setLongDesc(String longDesc) {
+		this.longDesc = longDesc;
 	}
 	
 	public User getOwner() {
