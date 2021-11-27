@@ -5,6 +5,16 @@
 | ----- | ---- | ----------- |
 | id | Long | The ID of the user |
 | username | String | The name of the user |
+| trust | Trust | The user's trust stats |
+
+### Trust
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| joinDate | DateTime | The date and time the user created their account |
+| upCount | Int | Number of positive ratings of the user (see [`/api/user/{userId}/rate`](users.md#get-useridrate)) |
+| downCount | Int | Number of negative ratings of the user |
+| tradeCount | Int | The number of trades this user has completed |
+| lostCount | Int | The number of trade disputes lost by this user |
 
 ### Offer
 | Field | Type | Description |
@@ -15,6 +25,14 @@
 | ownerId | Long | The ID of the offer's owner |
 | price | Long | The price, in atomic units of the currency |
 | currency | String | The currency in which the offer's price is set |
+
+### OfferReview
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| id | Long | The ID of the review |
+| reviewerId | Long | The ID of the reviewing user |
+| rating | Int | The rating on a scale from 1 to 5 |
+| comment | String | The text of the review |
 
 ### Trade
 | Field | Type | Description |
