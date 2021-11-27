@@ -23,3 +23,9 @@
 | offerId | Long | The ID of the offer this trade is about |
 | price | Long | Price set at trade open, in piconero |
 | buyerId | Long | The ID of the buyer in this trade (the seller is the offer owner) |
+
+### TradeMessage
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| date | DateTime | The date and time the message was sent |
+| content | String | The content of the message |

@@ -1,24 +1,43 @@
 # Trades Resource
 Path prefix: `/api/trades`
 
-### GET `/`
-- Response body: `Trade[]`
-
 ### GET `/{tradeId}`
 - Response body: `Trade`
 
-### POST `/`
-- Request body: `Trade`
+### POST `/new/{offerId}`
 - Response body: `Trade`
-
-### PUT `/{tradeId}`
-- Request body: `Trade`
-- Response body: `Trade`
-
-### DELETE `/{tradeId}`
 
 ### GET `/{tradeId}/messages`
 - Response body: `TradeMessage[]`
 
 ### POST `/{tradeId}/message`
 - Request body: `TradeMessage`
+
+### POST `/{tradeId}/close`
+Close the trade. Used before the buyer paid to cancel the trade, and to confirm
+completion of the trade after the seller marks it as completed.
+
+### GET `/{tradeId}/completed`
+Get the completion proof the seller submitted.
+- Response body: multipart of images
+
+### POST `/{tradeId}/completed`
+Mark the trade as completed (if it isn't yet) and submit proof of completion.
+- Request body: multipart of images
+
+### POST `/{tradeId}/dispute`
+Open a dispute on the trade (only after the seller marks it as completed).
+
+### GET `/{tradeId}/dispute/messages`
+Get messages sent in the dispute chat.
+- Response body: `TradeMessage[]`
+
+### POST `/{tradeId}/dispute/message`
+Send a message to the dispute chat.
+- Request body: `TradeMessage`
+
+### POST `/{tradeId}/dispute/resolve_ok`
+Resolve the dispute as the seller completing the trade.
+
+### POST `/{tradeId}/dispute/resolve_refund`
+Resolve the dispute as the seller not actually completing the trade, refunding the buyer.
