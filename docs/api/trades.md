@@ -21,6 +21,11 @@ Report the message as inappropriate.
 
 ### POST `/{tradeId}/messages/{messageId}/unreport`
 Mark the message as appropriate.
+- Required roles: `admin`
+
+### DELETE `/{tradeId}/messages/{messageId}`
+Delete a message.
+- Required roles: `admin`
 
 ### POST `/{tradeId}/close`
 Close the trade. Used before the buyer paid to cancel the trade, and to confirm

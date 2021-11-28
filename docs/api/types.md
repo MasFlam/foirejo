@@ -46,6 +46,7 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | id | Long | The ID of the message |
+| tradeId | Long | The ID of the trade this message was sent in |
 | authorId | Long | The ID of the message author |
 | isAdmin | Bool | Is this a message from an admin |
 | date | DateTime | The date and time the message was sent |
