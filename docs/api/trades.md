@@ -38,14 +38,6 @@ Mark the trade as completed (if it isn't yet) and submit proof of completion.
 Open a dispute on the trade (only after the seller marks it as completed).
 Can only be requested by the buyer.
 
-### GET `/{tradeId}/dispute/messages`
-Get messages sent in the dispute chat.
-- Response body: `TradeMessage[]`
-
-### POST `/{tradeId}/dispute/message`
-Send a message to the dispute chat.
-- Request body: `TradeMessage`
-
 ### POST `/{tradeId}/dispute/cancel`
 Cancel the dispute. Can only be requested by the buyer.
 
