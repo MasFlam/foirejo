@@ -1,5 +1,5 @@
 # Users Resource
-Path prefix: `/api/users`
+- Path prefix: `/api/users`
 
 ### GET `/me`
 - Response body: `User`

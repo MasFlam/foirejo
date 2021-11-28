@@ -45,5 +45,15 @@
 ### TradeMessage
 | Field | Type | Description |
 | ----- | ---- | ----------- |
+| id | Long | The ID of the message |
+| authorId | Long | The ID of the message author |
+| isAdmin | Bool | Is this a message from the admin |
 | date | DateTime | The date and time the message was sent |
 | content | String | The content of the message |
+
+### OfferReviewReport
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| offerId | Long | The ID of the offer |
+| reviewId | Long | The ID of the review in question |
+| reporterId | Long | The ID of the user who made this report |

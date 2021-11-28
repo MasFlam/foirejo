@@ -1,5 +1,5 @@
 # Trades Resource
-Path prefix: `/api/trades`
+- Path prefix: `/api/trades`
 
 ### GET `/{tradeId}`
 - Response body: `Trade`
@@ -27,6 +27,7 @@ Mark the trade as completed (if it isn't yet) and submit proof of completion.
 
 ### POST `/{tradeId}/dispute`
 Open a dispute on the trade (only after the seller marks it as completed).
+Can only be requested by the buyer.
 
 ### GET `/{tradeId}/dispute/messages`
 Get messages sent in the dispute chat.
@@ -36,8 +37,13 @@ Get messages sent in the dispute chat.
 Send a message to the dispute chat.
 - Request body: `TradeMessage`
 
+### POST `/{tradeId}/dispute/cancel`
+Cancel the dispute. Can only be requested by the buyer.
+
 ### POST `/{tradeId}/dispute/resolve_ok`
 Resolve the dispute as the seller completing the trade.
+- Required roles: `admin`
 
 ### POST `/{tradeId}/dispute/resolve_refund`
 Resolve the dispute as the seller not actually completing the trade, refunding the buyer.
+- Required roles: `admin`

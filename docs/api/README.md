@@ -8,3 +8,4 @@ This directory should be a specification of the entire REST API.
 - [Users](users.md)
 - [Offers](offers.md)
 - [Trades](trades.md)
+- [Administration](admin.md)
