@@ -7,7 +7,7 @@ Get the unadressed reports of offer reviews.
 - Response body: `OfferReviewReport[]`
 
 ### GET `/disputes`
-Get the trades for which there are opened disputes.
+Get the trades for which there are disputes open.
 - Response body: `Trade[]`
 
 ### GET `/offers`

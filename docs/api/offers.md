@@ -30,18 +30,18 @@
 - Response body: `OfferReview[]`
 - Not authenticated
 
-### POST `/{offerId}/review/{reviewId}/report`
+### POST `/{offerId}/reviews/{reviewId}/report`
 Report the review as inappropriate.
 
-### POST `/{offerId}/review/{reviewId}/unreport`
+### POST `/{offerId}/reviews/{reviewId}/unreport`
 Mark the review as appropriate.
 - Required roles: `admin`
 
-### GET `/{offerId}/review/{reviewId}`
+### GET `/{offerId}/reviews/{reviewId}`
 - Response type: `OfferReview`
 - Not authenticated
 
-### DELETE `/{offerId}/review/{reviewId}`
+### DELETE `/{offerId}/reviews/{reviewId}`
 Delete the review.
 - Required role: `admin`
 

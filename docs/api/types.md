@@ -47,7 +47,7 @@
 | ----- | ---- | ----------- |
 | id | Long | The ID of the message |
 | authorId | Long | The ID of the message author |
-| isAdmin | Bool | Is this a message from the admin |
+| isAdmin | Bool | Is this a message from an admin |
 | date | DateTime | The date and time the message was sent |
 | content | String | The content of the message |
 

@@ -10,8 +10,17 @@
 ### GET `/{tradeId}/messages`
 - Response body: `TradeMessage[]`
 
-### POST `/{tradeId}/message`
+### POST `/{tradeId}/messages`
 - Request body: `TradeMessage`
+
+### GET `/{tradeId}/messages/{messageId}`
+- Response body: `TradeMessage`
+
+### POST `/{tradeId}/messages/{messageId}/report`
+Report the message as inappropriate.
+
+### POST `/{tradeId}/messages/{messageId}/unreport`
+Mark the message as appropriate.
 
 ### POST `/{tradeId}/close`
 Close the trade. Used before the buyer paid to cancel the trade, and to confirm
