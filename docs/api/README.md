@@ -8,5 +8,6 @@ All endpoints require authentication, unless marked as "Not authenticated".
 ### Resources
 - [Users](users.md)
 - [Offers](offers.md)
+- [Reviews](reviews.md)
 - [Trades](trades.md)
 - [Administration](admin.md)

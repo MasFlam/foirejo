@@ -26,10 +26,11 @@
 | price | Long | The price, in atomic units of the currency |
 | currency | String | The currency in which the offer's price is set |
 
-### OfferReview
+### Review
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | id | Long | The ID of the review |
+| offerId | Long | The ID of the offer this review is about |
 | reviewerId | Long | The ID of the reviewing user |
 | rating | Int | The rating on a scale from 1 to 5 |
 | comment | String | The text of the review |
@@ -51,10 +52,3 @@
 | isAdmin | Bool | Is this a message from an admin |
 | date | DateTime | The date and time the message was sent |
 | content | String | The content of the message |
-
-### OfferReviewReport
-| Field | Type | Description |
-| ----- | ---- | ----------- |
-| offerId | Long | The ID of the offer |
-| reviewId | Long | The ID of the review in question |
-| reporterId | Long | The ID of the user who made this report |

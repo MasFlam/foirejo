@@ -2,9 +2,9 @@
 - Path prefix: `/api/admin`
 - Required roles: `admin`
 
-### GET `/offer_reviews`
-Get the unadressed reports of offer reviews.
-- Response body: `OfferReviewReport[]`
+### GET `/reviews`
+Get the reported reviews.
+- Response body: `Review[]`
 
 ### GET `/trade_messages`
 Get the trade messages reported as inappropriate.
