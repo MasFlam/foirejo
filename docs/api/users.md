@@ -18,12 +18,15 @@
 
 ### GET `/{userId}`
 - Response body: `User`
+- Not authenticated
 
 ### GET `/{userId}/offers`
 - Response body: `Offer[]`
+- Not authenticated
 
 ### GET `/{userId}/offers/count`
 - Response body: `Int`
+- Not authenticated
 
 ### GET `/{userId}/rate`
 Get the rating you gave the user.

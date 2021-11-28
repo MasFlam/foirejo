@@ -3,12 +3,15 @@
 
 ### GET `/`
 - Response body: `Offer[]`
+- Not authenticated
 
 ### GET `/{offerId}`
 - Response body: `Offer`
+- Not authenticated
 
 ### GET `/{offerId}/long_desc`
 - Response body: TBD
+- Not authenticated
 
 ### POST `/`
 - Request body: `Offer`
@@ -25,6 +28,7 @@
 
 ### GET `/{offerId}/reviews`
 - Response body: `OfferReview[]`
+- Not authenticated
 
 ### POST `/{offerId}/review/{reviewId}/report`
 Report the review as inappropriate.
@@ -35,6 +39,7 @@ Mark the review as appropriate.
 
 ### GET `/{offerId}/review/{reviewId}`
 - Response type: `OfferReview`
+- Not authenticated
 
 ### DELETE `/{offerId}/review/{reviewId}`
 Delete the review.
