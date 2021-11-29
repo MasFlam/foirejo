@@ -13,17 +13,17 @@
 ### POST `/{tradeId}/messages`
 - Request body: `TradeMessage`
 
-### GET `/{tradeId}/messages/{messageId}`
+### GET `/messages/{messageId}`
 - Response body: `TradeMessage`
 
-### POST `/{tradeId}/messages/{messageId}/report`
+### POST `/messages/{messageId}/report`
 Report the message as inappropriate.
 
-### POST `/{tradeId}/messages/{messageId}/unreport`
+### POST `/messages/{messageId}/unreport`
 Mark the message as appropriate.
 - Required roles: `admin`
 
-### DELETE `/{tradeId}/messages/{messageId}`
+### DELETE `/messages/{messageId}`
 Delete a message.
 - Required roles: `admin`
 
