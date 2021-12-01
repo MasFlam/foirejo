@@ -1,3 +1,4 @@
+[![Matrix room](https://img.shields.io/static/v1?label=Matrix&message=%23foirejo&logo=matrix&color=brightgreen&logoWidth=20)](https://matrix.to/#/#foirejo:masflam.com)
 
 # Foirejo
 Foirejo (Esperanto for *marketplace*) is an online marketplace where all payments are made in
