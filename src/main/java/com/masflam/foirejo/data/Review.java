@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Trade {
+public class Review {
 	@GeneratedValue
 	@Id
 	private Long id;
@@ -15,11 +15,14 @@ public class Trade {
 	@ManyToOne(optional = false)
 	private Offer offer;
 	
-	@Column(nullable = false)
-	private Long price;
-	
 	@ManyToOne(optional = false)
-	private User buyer;
+	private User reviewer;
+	
+	@Column(nullable = false)
+	private Integer rating;
+	
+	@Column(nullable = false)
+	private String comment;
 	
 	public Long getId() {
 		return id;
@@ -37,19 +40,27 @@ public class Trade {
 		this.offer = offer;
 	}
 	
-	public Long getPrice() {
-		return price;
+	public User getReviewer() {
+		return reviewer;
 	}
 	
-	public void setPrice(Long price) {
-		this.price = price;
+	public void setReviewer(User reviewer) {
+		this.reviewer = reviewer;
 	}
 	
-	public User getBuyer() {
-		return buyer;
+	public Integer getRating() {
+		return rating;
 	}
 	
-	public void setBuyer(User buyer) {
-		this.buyer = buyer;
+	public void setRating(Integer rating) {
+		this.rating = rating;
+	}
+	
+	public String getComment() {
+		return comment;
+	}
+	
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

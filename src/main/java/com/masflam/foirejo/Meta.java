@@ -1,5 +1,7 @@
 package com.masflam.foirejo;
 
+import java.time.LocalDate;
+
 import javax.enterprise.event.Observes;
 import javax.inject.Singleton;
 import javax.transaction.Transactional;
@@ -21,6 +23,7 @@ public class Meta {
 		user.setUsername("user");
 		user.setPasswordHash(BcryptUtil.bcryptHash("pass"));
 		user.setRoles("user");
+		user.setJoinDate(LocalDate.now());
 		userRepo.persist(user);
 		
 		var offer = new Offer();

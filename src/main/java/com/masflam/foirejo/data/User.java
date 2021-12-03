@@ -1,5 +1,7 @@
 package com.masflam.foirejo.data;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,15 +22,20 @@ public class User {
 	@Id
 	private Long id;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	@Username
 	private String username;
 	
+	@Column(nullable = false)
 	@Password
 	private String passwordHash;
 	
+	@Column(nullable = false)
 	@Roles
 	private String roles;
+	
+	@Column(nullable = false)
+	private LocalDate joinDate;
 	
 	public Long getId() {
 		return id;
@@ -60,5 +67,13 @@ public class User {
 	
 	public void setRoles(String roles) {
 		this.roles = roles;
+	}
+	
+	public LocalDate getJoinDate() {
+		return joinDate;
+	}
+	
+	public void setJoinDate(LocalDate joinDate) {
+		this.joinDate = joinDate;
 	}
 }

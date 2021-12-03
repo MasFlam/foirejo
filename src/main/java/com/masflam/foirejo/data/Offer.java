@@ -1,5 +1,6 @@
 package com.masflam.foirejo.data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,15 +13,20 @@ public class Offer {
 	@Id
 	private Long id;
 	
+	@Column(nullable = false)
 	private String title;
 	
+	@Column(nullable = false)
 	private String shortDesc;
 	
+	@Column(nullable = false)
 	@Lob
 	private String longDesc;
 	
+	@Column(nullable = false)
 	private Long price;
 	
+	@Column(nullable = false)
 	private Currency currency;
 	
 	@ManyToOne(optional = false)

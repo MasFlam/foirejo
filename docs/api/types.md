@@ -1,5 +1,7 @@
 # API Types
 
+<!-- TODO: Partial types -->
+
 ### User
 | Field | Type | Description |
 | ----- | ---- | ----------- |
@@ -43,6 +45,7 @@
 | price | Long | Price set at trade open, in piconero |
 | buyerId | Long | The ID of the buyer in this trade (the seller is the offer owner) |
 
+<!-- TODO: sending photos/videos -->
 ### TradeMessage
 | Field | Type | Description |
 | ----- | ---- | ----------- |
