@@ -2,6 +2,8 @@
 This directory should be a specification of the entire REST API.
 All endpoints require authentication, unless marked as "Not authenticated".
 
+<!-- TODO: Pagination on endpoints that return potentially long lists -->
+
 ### Types
 - [Types](types.md)
 
