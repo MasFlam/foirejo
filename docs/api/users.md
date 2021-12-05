@@ -35,4 +35,7 @@ Get the rating you gave the user.
 ### POST `/{userId}/rate`
 Rate the user. Can only be requested if you have traded with the user, unless you cancelled your
 only shared trade before the seller marked it as completed.
-- Request body: `true`, `false` or `null`
+- Request body: `true`, `false`
+
+### DELETE `/{userId}/rate`
+Remove your rating of the user. If you have not rated the user, nothing happens.

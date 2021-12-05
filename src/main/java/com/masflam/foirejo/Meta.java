@@ -20,6 +20,13 @@ public class Meta {
 	@Transactional
 	public void startup(@Observes StartupEvent evt, UserRepository userRepo, OfferRepository offerRepo) {
 		var user = new User();
+		user.setUsername("admin");
+		user.setPasswordHash(BcryptUtil.bcryptHash("admin"));
+		user.setRoles("user,admin");
+		user.setJoinDate(LocalDate.now());
+		userRepo.persist(user);
+		
+		user = new User();
 		user.setUsername("user");
 		user.setPasswordHash(BcryptUtil.bcryptHash("pass"));
 		user.setRoles("user");
