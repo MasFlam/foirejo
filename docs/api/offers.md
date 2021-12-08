@@ -1,10 +1,6 @@
 # Offers Resource
 - Path prefix: `/api/offers`
 
-### GET `/`
-- Response body: `Offer[]`
-- Not authenticated
-
 ### GET `/{offerId}`
 - Response body: `Offer`
 - Not authenticated
@@ -19,7 +15,6 @@
 
 ### PUT `/{offerId}`
 - Request body: `Offer`
-- Response body: `Long`
 
 ### PUT `/{offerId}/long_desc`
 - Request body: TBD
@@ -27,7 +22,8 @@
 ### DELETE `/{offerId}`
 
 ### GET `/{offerId}/reviews`
-- Response body: `Review[]`
+- Request body: `Paginated`
+- Response body: `Page(Review)`
 - Not authenticated
 
 ### GET `/{offerId}/review`

@@ -2,6 +2,19 @@
 
 <!-- TODO: Partial types -->
 
+### Paginated(*T*?)
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| pageno | Integer | The 0-based index of the requested page |
+| pagesz | Integer | The page size |
+| body? | *T* | The main body of the request |
+
+### Page(*T*)
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| items | *T*[] | The items on this page |
+| total | Integer | The total number of items at this endpoint |
+
 ### User
 | Field | Type | Description |
 | ----- | ---- | ----------- |

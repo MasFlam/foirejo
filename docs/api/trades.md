@@ -8,7 +8,8 @@
 - Response body: `Trade`
 
 ### GET `/{tradeId}/messages`
-- Response body: `TradeMessage[]`
+- Request body: `Paginated`
+- Response body: `Page(TradeMessage)`
 
 ### POST `/{tradeId}/messages`
 - Request body: `TradeMessage`

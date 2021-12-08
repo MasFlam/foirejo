@@ -5,27 +5,20 @@
 - Response body: `User`
 
 ### GET `/me/offers`
-- Response body: `Offer[]`
-
-### GET `/me/offers/count`
-- Response body: `Int`
+- Request body: `Paginated`
+- Response body: `Page(Offer)`
 
 ### GET `/me/trades`
-- Response body: `Trade[]`
-
-### GET `/me/trades/count`
-- Response body: `Int`
+- Request body: `Paginated`
+- Response body: `Page(Trade)`
 
 ### GET `/{userId}`
 - Response body: `User`
 - Not authenticated
 
 ### GET `/{userId}/offers`
-- Response body: `Offer[]`
-- Not authenticated
-
-### GET `/{userId}/offers/count`
-- Response body: `Int`
+- Request body: `Paginated`
+- Response body: `Page(Offer)`
 - Not authenticated
 
 ### GET `/{userId}/rate`

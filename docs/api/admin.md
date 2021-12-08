@@ -4,16 +4,20 @@
 
 ### GET `/reviews`
 Get the reported reviews.
-- Response body: `Review[]`
+- Request body: `Paginated`
+- Response body: `Page(Review)`
 
 ### GET `/trade_messages`
 Get the trade messages reported as inappropriate.
-- Response body: `TradeMessage[]`
+- Request body: `Paginated`
+- Response body: `Page(TradeMessage)`
 
 ### GET `/disputes`
 Get the trades for which there are disputes open.
-- Response body: `Trade[]`
+- Request body: `Paginated`
+- Response body: `Page(Trade)`
 
 ### GET `/offers`
 Get the offers awaiting acceptation from the admins.
-- Response body: `Offer[]`
+- Request body: `Paginated`
+- Response body: `Page(Offer)`

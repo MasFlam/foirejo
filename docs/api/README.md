@@ -13,3 +13,4 @@ All endpoints require authentication, unless marked as "Not authenticated".
 - [Reviews](reviews.md)
 - [Trades](trades.md)
 - [Administration](admin.md)
+- [Search](search.md) (TODO)

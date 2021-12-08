@@ -7,12 +7,13 @@
 
 ### DELETE `/{reviewId}`
 Delete the review.
-- Required role: `admin`
+- Required roles: `admin`
 
 ### GET `/{reviewId}/reporters`
 Get all users who reported the review as inappropriate.
-- Response body: `User[]`
-- Required role: `admin`
+- Request body: `Paginated`
+- Response body: `Page(User)`
+- Required roles: `admin`
 
 ### POST `/{reviewId}/report`
 Report the review as inappropriate.
