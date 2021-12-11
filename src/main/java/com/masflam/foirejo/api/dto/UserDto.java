@@ -1,6 +1,6 @@
 package com.masflam.foirejo.api.dto;
 
-import com.masflam.foirejo.data.User;
+import com.masflam.foirejo.data.entity.User;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 

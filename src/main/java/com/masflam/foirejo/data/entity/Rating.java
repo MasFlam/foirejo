@@ -1,4 +1,4 @@
-package com.masflam.foirejo.data;
+package com.masflam.foirejo.data.entity;
 
 import java.io.Serializable;
 import java.util.Objects;

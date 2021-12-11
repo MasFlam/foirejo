@@ -1,4 +1,4 @@
-package com.masflam.foirejo.data;
+package com.masflam.foirejo.data.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

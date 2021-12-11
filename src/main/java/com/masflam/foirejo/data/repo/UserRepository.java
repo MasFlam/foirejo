@@ -1,8 +1,10 @@
-package com.masflam.foirejo.data;
+package com.masflam.foirejo.data.repo;
 
 import java.util.Optional;
 
 import javax.inject.Singleton;
+
+import com.masflam.foirejo.data.entity.User;
 
 import io.quarkus.hibernate.orm.panache.PanacheRepository;
 

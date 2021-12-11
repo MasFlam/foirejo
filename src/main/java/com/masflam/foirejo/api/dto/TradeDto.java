@@ -1,6 +1,6 @@
 package com.masflam.foirejo.api.dto;
 
-import com.masflam.foirejo.data.Trade;
+import com.masflam.foirejo.data.entity.Trade;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 

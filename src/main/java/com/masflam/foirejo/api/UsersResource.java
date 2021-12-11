@@ -25,12 +25,12 @@ import com.masflam.foirejo.annotation.RestResource;
 import com.masflam.foirejo.api.dto.OfferDto;
 import com.masflam.foirejo.api.dto.TradeDto;
 import com.masflam.foirejo.api.dto.UserDto;
-import com.masflam.foirejo.data.OfferRepository;
-import com.masflam.foirejo.data.Rating;
-import com.masflam.foirejo.data.RatingRepository;
-import com.masflam.foirejo.data.TradeRepository;
-import com.masflam.foirejo.data.User;
-import com.masflam.foirejo.data.UserRepository;
+import com.masflam.foirejo.data.entity.Rating;
+import com.masflam.foirejo.data.entity.User;
+import com.masflam.foirejo.data.repo.OfferRepository;
+import com.masflam.foirejo.data.repo.RatingRepository;
+import com.masflam.foirejo.data.repo.TradeRepository;
+import com.masflam.foirejo.data.repo.UserRepository;
 
 import io.quarkus.security.Authenticated;
 

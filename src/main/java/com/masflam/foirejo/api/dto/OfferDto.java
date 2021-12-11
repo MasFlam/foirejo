@@ -1,7 +1,7 @@
 package com.masflam.foirejo.api.dto;
 
 import com.masflam.foirejo.data.Currency;
-import com.masflam.foirejo.data.Offer;
+import com.masflam.foirejo.data.entity.Offer;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 

@@ -14,12 +14,12 @@ import javax.ws.rs.core.SecurityContext;
 import com.masflam.foirejo.annotation.RestResource;
 import com.masflam.foirejo.api.dto.TradeDto;
 import com.masflam.foirejo.data.Currency;
-import com.masflam.foirejo.data.Offer;
-import com.masflam.foirejo.data.OfferRepository;
-import com.masflam.foirejo.data.Trade;
-import com.masflam.foirejo.data.TradeRepository;
-import com.masflam.foirejo.data.User;
-import com.masflam.foirejo.data.UserRepository;
+import com.masflam.foirejo.data.entity.Offer;
+import com.masflam.foirejo.data.entity.Trade;
+import com.masflam.foirejo.data.entity.User;
+import com.masflam.foirejo.data.repo.OfferRepository;
+import com.masflam.foirejo.data.repo.TradeRepository;
+import com.masflam.foirejo.data.repo.UserRepository;
 import com.masflam.foirejo.service.CurrencyPriceService;
 
 import io.quarkus.security.Authenticated;

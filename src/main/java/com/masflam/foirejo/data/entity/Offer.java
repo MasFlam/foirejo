@@ -1,4 +1,4 @@
-package com.masflam.foirejo.data;
+package com.masflam.foirejo.data.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import com.masflam.foirejo.data.Currency;
 
 @Entity
 public class Offer {

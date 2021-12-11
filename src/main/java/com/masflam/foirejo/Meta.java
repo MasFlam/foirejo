@@ -7,10 +7,10 @@ import javax.inject.Singleton;
 import javax.transaction.Transactional;
 
 import com.masflam.foirejo.data.Currency;
-import com.masflam.foirejo.data.Offer;
-import com.masflam.foirejo.data.OfferRepository;
-import com.masflam.foirejo.data.User;
-import com.masflam.foirejo.data.UserRepository;
+import com.masflam.foirejo.data.entity.Offer;
+import com.masflam.foirejo.data.entity.User;
+import com.masflam.foirejo.data.repo.OfferRepository;
+import com.masflam.foirejo.data.repo.UserRepository;
 
 import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.runtime.StartupEvent;

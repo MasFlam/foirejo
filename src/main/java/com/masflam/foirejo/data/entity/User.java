@@ -1,4 +1,4 @@
-package com.masflam.foirejo.data;
+package com.masflam.foirejo.data.entity;
 
 import java.time.LocalDate;
 import java.util.Objects;
