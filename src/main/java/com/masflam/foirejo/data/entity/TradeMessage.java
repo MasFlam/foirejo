@@ -1,6 +1,7 @@
 package com.masflam.foirejo.data.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class TradeMessage {
 	private User author;
 	
 	@Column(nullable = false)
-	private LocalDate date;
+	private LocalDate dateUtc;
 	
 	@Column(nullable = false)
 	private String content;
@@ -51,11 +52,11 @@ public class TradeMessage {
 	}
 	
 	public LocalDate getDate() {
-		return date;
+		return dateUtc;
 	}
 	
 	public void setDate(LocalDate date) {
-		this.date = date;
+		this.dateUtc = date;
 	}
 	
 	public String getContent() {
@@ -64,5 +65,19 @@ public class TradeMessage {
 	
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		TradeMessage that = (TradeMessage) obj;
+		return Objects.equals(id, that.id);
 	}
 }

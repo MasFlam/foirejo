@@ -13,6 +13,7 @@
 
 ### POST `/{tradeId}/messages`
 - Request body: `TradeMessage/1`
+- Response body: `Long`
 
 ### GET `/messages/{messageId}`
 - Response body: `TradeMessage`
@@ -28,9 +29,11 @@ Mark the message as appropriate.
 Delete a message.
 - Required roles: `admin`
 
+### POST `/{tradeId}/cancel`
+Cancel the trade. Can only by used before the payment wallet receives any funds, and only by the buyer.
+
 ### POST `/{tradeId}/close`
-Close the trade. Used before the buyer paid to cancel the trade, and to confirm
-completion of the trade after the seller marks it as completed.
+Close the trade. Used by the buyer to confirm completion of the trade after the seller marks it as completed.
 
 ### GET `/{tradeId}/completed`
 Get the completion proof the seller submitted.

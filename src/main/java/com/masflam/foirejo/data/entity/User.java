@@ -36,7 +36,7 @@ public class User {
 	private String roles;
 	
 	@Column(nullable = false)
-	private LocalDate joinDate;
+	private LocalDate joinDateUtc;
 	
 	public Long getId() {
 		return id;
@@ -71,24 +71,24 @@ public class User {
 	}
 	
 	public LocalDate getJoinDate() {
-		return joinDate;
+		return joinDateUtc;
 	}
 	
 	public void setJoinDate(LocalDate joinDate) {
-		this.joinDate = joinDate;
+		this.joinDateUtc = joinDate;
 	}
-
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(username);
+		return Objects.hash(id);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) return true;
 		if (obj == null || getClass() != obj.getClass())
 			return false;
 		User that = (User) obj;
-		return Objects.equals(username, that.username);
+		return Objects.equals(id, that.id);
 	}
 }

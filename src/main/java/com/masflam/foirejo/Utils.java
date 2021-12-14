@@ -1,10 +1,16 @@
 package com.masflam.foirejo;
 
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 
 import com.masflam.foirejo.data.Currency;
 
 public class Utils {
+	public LocalDate nowUtc() {
+		return LocalDate.now(ZoneOffset.UTC);
+	}
+	
 	// Page number 0 in th array means a place for an ellipsis
 	public static int[] pageNumbersFor(int pageIndex, int pageCount) {
 		int[] pages;

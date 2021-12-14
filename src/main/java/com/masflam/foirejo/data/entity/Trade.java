@@ -1,5 +1,7 @@
 package com.masflam.foirejo.data.entity;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,5 +53,19 @@ public class Trade {
 	
 	public void setBuyer(User buyer) {
 		this.buyer = buyer;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+		Trade that = (Trade) obj;
+		return Objects.equals(id, that.id);
 	}
 }
