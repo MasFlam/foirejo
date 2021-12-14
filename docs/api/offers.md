@@ -10,11 +10,11 @@
 - Not authenticated
 
 ### POST `/`
-- Request body: `Offer`
+- Request body: `Offer/1`
 - Response body: `Long`
 
 ### PUT `/{offerId}`
-- Request body: `Offer`
+- Request body: `Offer/1`
 
 ### PUT `/{offerId}/long_desc`
 - Request body: TBD
@@ -30,6 +30,6 @@
 - Response body: `Review` or `null`
 
 ### POST `/{offerId}/review`
-- Request body: `Review`
+- Request body: `Review/1`
 
-## DELETE `/{offerId}/review`
+### DELETE `/{offerId}/review`

@@ -1,6 +1,6 @@
 # API Types
-
-<!-- TODO: Partial types -->
+Partial types are referred to as `Type/<number>`, which means that it is `Type` only with fields
+marked by superscript `<number>` in the table.
 
 ### Paginated(*T*?)
 | Field | Type | Description |
@@ -35,11 +35,11 @@
 | Field | Type | Description |
 | ----- | ---- | ----------- |
 | id | Long | The ID of the offer |
-| title | String | The title of the offer |
-| shortDesc | String | The short description of the offer |
+| title <sup>1</sup> | String | The title of the offer |
+| shortDesc <sup>1</sup> | String | The short description of the offer |
 | ownerId | Long | The ID of the offer's owner |
-| price | Long | The price, in atomic units of the currency |
-| currency | String | The currency in which the offer's price is set |
+| price <sup>1</sup> | Long | The price, in atomic units of the currency |
+| currency <sup>1</sup> | String | The currency in which the offer's price is set |
 
 ### Review
 | Field | Type | Description |
@@ -47,8 +47,8 @@
 | id | Long | The ID of the review |
 | offerId | Long | The ID of the offer this review is about |
 | reviewerId | Long | The ID of the reviewing user |
-| rating | Int | The rating on a scale from 1 to 5 |
-| comment | String | The text of the review |
+| rating <sup>1</sup> | Int | The rating on a scale from 1 to 5 |
+| comment <sup>1</sup> | String | The text of the review |
 
 ### Trade
 | Field | Type | Description |
@@ -67,4 +67,19 @@
 | authorId | Long | The ID of the message author |
 | isAdmin | Bool | Is this a message from an admin |
 | date | DateTime | The date and time the message was sent |
-| content | String | The content of the message |
+| content <sup>1</sup> | String | The content of the message |
+
+### SearchRequest
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| query | String | The search query string |
+| type | String | Which type of entity to search for |
+| sortBy | String | Which attribute of the entity to sort by |
+| desc? | Bool | If true, sort in descending order. If false or not present, sort in ascending order |
+<!-- | filters | SearchFilter[] | Filters to apply to the search |
+
+### SearchFilter
+| Field | Type | Description |
+| ----- | ---- | ----------- |
+| attibute | String | The attribute of the entity to filter by |
+| -->

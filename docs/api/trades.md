@@ -12,7 +12,7 @@
 - Response body: `Page(TradeMessage)`
 
 ### POST `/{tradeId}/messages`
-- Request body: `TradeMessage`
+- Request body: `TradeMessage/1`
 
 ### GET `/messages/{messageId}`
 - Response body: `TradeMessage`
