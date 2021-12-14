@@ -1,6 +1,5 @@
 package com.masflam.foirejo.api;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,8 +16,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
 import javax.ws.rs.core.Response.Status;
+import javax.ws.rs.core.SecurityContext;
 
 import com.masflam.foirejo.annotation.RestResource;
 import com.masflam.foirejo.api.dto.OfferDto;
