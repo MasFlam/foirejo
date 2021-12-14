@@ -22,7 +22,9 @@ import javax.ws.rs.core.Response.Status;
 
 import com.masflam.foirejo.annotation.RestResource;
 import com.masflam.foirejo.api.dto.OfferDto;
+import com.masflam.foirejo.api.dto.OfferDto1;
 import com.masflam.foirejo.api.dto.ReviewDto;
+import com.masflam.foirejo.api.dto.ReviewDto1;
 import com.masflam.foirejo.data.entity.Offer;
 import com.masflam.foirejo.data.entity.Review;
 import com.masflam.foirejo.data.entity.User;
@@ -45,22 +47,9 @@ public class OffersResource {
 	public UserRepository userRepo;
 	
 	@GET
-	@PermitAll
-	public Collection<OfferDto> getOffers(
-		@QueryParam("pageno") @DefaultValue("0") int pageIndex,
-		@QueryParam("pagesz") @DefaultValue("20") int pageSize
-	) {
-		return offerRepo.findAll()
-			.page(pageIndex, pageSize)
-			.stream()
-				.map(OfferDto::new)
-				.collect(Collectors.toList());
-	}
-	
-	@GET
 	@Path("/{offerId}")
 	@PermitAll
-	public Response getOfferById(@PathParam("offerId") Long offerId) {
+	public Response getOfferById(@PathParam("offerId") long offerId) {
 		Offer offer = offerRepo.findById(offerId);
 		if (offer == null) {
 			return Response.status(Status.NOT_FOUND).build();
@@ -71,7 +60,7 @@ public class OffersResource {
 	@Authenticated
 	@POST
 	@Transactional
-	public Long createOffer(@Context SecurityContext sec, OfferDto offerDto) {
+	public Long createOffer(@Context SecurityContext sec, OfferDto1 offerDto) {
 		User owner = userRepo.findByUsername(sec.getUserPrincipal().getName());
 		var offer = new Offer();
 		offer.setTitle(offerDto.getTitle());
@@ -90,7 +79,7 @@ public class OffersResource {
 	public Response updateOffer(
 		@Context SecurityContext sec,
 		@PathParam("offerId") Long offerId,
-		OfferDto offerDto
+		OfferDto1 offerDto
 	) {
 		Offer offer = offerRepo.findById(offerId);
 		if (offer == null) {
@@ -167,7 +156,7 @@ public class OffersResource {
 	public Response setMyOfferReview(
 		@Context SecurityContext sec,
 		@PathParam("offerId") Long offerId,
-		ReviewDto newReview
+		ReviewDto1 newReview
 	) {
 		User user = userRepo.findByUsername(sec.getUserPrincipal().getName());
 		Offer offer = offerRepo.findById(offerId);

@@ -26,7 +26,7 @@ public class ReviewDto {
 			review.getRating(), review.getComment()
 		);
 	}
-
+	
 	public Long getId() {
 		return id;
 	}
